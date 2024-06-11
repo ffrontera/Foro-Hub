@@ -1,7 +1,7 @@
 package ff.api.forohub.domain.topico;
 
 import ff.api.forohub.domain.curso.Curso;
-import ff.api.forohub.domain.respuesta.Respuesta;
+import ff.api.forohub.domain.topico.respuesta.RespuestaTopico;
 import ff.api.forohub.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ public class Topico {
     @Column(unique = true)
     private String titulo;
     @Column(unique = true)
-    private String Mensaje;
+    private String mensaje;
     private LocalDateTime fechaCreacion;
     private Boolean status;
     @ManyToOne
@@ -34,6 +34,15 @@ public class Topico {
     @ManyToOne
     private Curso curso;
     @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Respuesta> respuestas;
+    private List<RespuestaTopico> respuestas;
 
+    public Topico(String titulo, String mensaje, Usuario autor, Curso curso) {
+        this.titulo = titulo;
+        this.mensaje = mensaje;
+        this.fechaCreacion = LocalDateTime.now();
+        this.status = false;
+        this.autorTopico = autor;
+        this.curso = curso;
+        this.respuestas = null;
+    }
 }
