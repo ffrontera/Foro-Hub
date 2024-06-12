@@ -8,5 +8,8 @@ create table topicos(
     autorId bigint not null,
     cursoId bigint not null,
 
-primary key(id)
+    primary key(id),
+
+    constraint fk_topicos_autorId foreign key(autorId) references usuarios(id),
+    constraint fk_topicos_cursoId foreign key(cursoId) references cursos(id)
 );

@@ -2,10 +2,7 @@ package ff.api.forohub.domain.curso;
 
 import ff.api.forohub.domain.topico.Topico;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -21,7 +18,29 @@ public class Curso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    private List<Categoria> categorias;
+    @Enumerated(EnumType.STRING)
+    private Categoria categoria;
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Topico> topicosCurso;
+
+    public Curso(String nombre, Categoria categoria) {
+        this.nombre = nombre;
+        this.categoria = categoria;
+    }
+
+    public void setNombtre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
 }

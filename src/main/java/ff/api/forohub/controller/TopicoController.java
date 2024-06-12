@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @ResponseBody
-@RequestMapping("/topico")
+@RequestMapping("/topicos")
 public class TopicoController {
 
     @Autowired
