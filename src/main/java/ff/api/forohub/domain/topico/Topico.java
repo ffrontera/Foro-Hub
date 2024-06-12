@@ -4,10 +4,7 @@ import ff.api.forohub.domain.curso.Curso;
 import ff.api.forohub.domain.topico.respuesta.RespuestaTopico;
 import ff.api.forohub.domain.usuario.Usuario;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,6 +12,7 @@ import java.util.List;
 @Table(name = "topicos")
 @Entity(name = "Topico")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -44,5 +42,14 @@ public class Topico {
         this.autorTopico = autor;
         this.curso = curso;
         this.respuestas = null;
+    }
+
+    public void actualirTopico(DatosActualizarTopico datos) {
+        if (datos.mensaje() != null) {
+            this.mensaje = datos.mensaje();
+        }
+        if (datos.titulo() != null) {
+            this.titulo = datos.titulo();
+        }
     }
 }
