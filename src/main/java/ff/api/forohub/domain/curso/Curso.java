@@ -43,4 +43,14 @@ public class Curso {
     public Categoria getCategoria() {
         return categoria;
     }
+
+    public void actualizar(DatosActualizarCurso datos) {
+        if (datos.nombre() != null) {
+            this.nombre= datos.nombre();
+        }
+
+        if (datos.categoria() != null) {
+            this.categoria = datos.categoria();
+        }
+    }
 }

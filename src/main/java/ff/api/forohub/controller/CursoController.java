@@ -1,8 +1,6 @@
 package ff.api.forohub.controller;
 
-import ff.api.forohub.domain.curso.CursoService;
-import ff.api.forohub.domain.curso.DatosActualizarCurso;
-import ff.api.forohub.domain.curso.DatosCrearCurso;
+import ff.api.forohub.domain.curso.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

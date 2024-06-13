@@ -28,15 +28,7 @@ public class CursoService {
             throw new ValidacionDeIntegridad("Debe proporcionar el ID del curso");
         }
         var curso = cursoRepository.getReferenceById(datos.id());
-
-        if (datos.nombre() != null) {
-            curso.setNombtre(datos.nombre());
-        }
-
-        if (datos.categoria() != null) {
-            curso.setCategoria(datos.categoria());
-        }
-
+        curso.actualizar(datos);
         return new DatosCurso(curso);
     }
 }

@@ -17,7 +17,7 @@ public class TopicoExistente implements ValidadorTopico{
     public void validar(DatosCrearTopico datos) {
         var tituloExistente = topicoRepository.existsByTituloAndMensaje(datos.titulo(), datos.mensaje());
 
-        if(tituloExistente) {
+        if(tituloExistente != null && tituloExistente) {
             throw new ValidationException("Ya existe un topico con ese titulo.");
         }
     }
