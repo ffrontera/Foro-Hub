@@ -1,7 +1,7 @@
 create table respuestas(
 
     id bigint not null auto_increment,
-    mensaje varchar(255) not null unique,
+    mensaje varchar(255) not null,
     topico_id bigint not null,
     fecha_creacion datetime not null,
     autor_respuesta_id bigint not null,

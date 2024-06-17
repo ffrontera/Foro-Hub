@@ -33,16 +33,32 @@ public class TopicoController {
         return ResponseEntity.ok(response);
     }
 
+    //TODO: revisar el por que no esta eliminando.
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity eliminar(@PathVariable Long id) {
-        service.eliminarTopico(id);
-        return ResponseEntity.noContent().build();
+        var response = service.eliminarTopico(id);
+        return ResponseEntity.ok(response);
     }
 
+
+    //TODO: implementar PadeModel
     @GetMapping
     public ResponseEntity<Page<DatosTopico>> listar(@PageableDefault(size = 10)Pageable paginacion) {
         Page<DatosTopico> page = service.listarTopicos(paginacion);
         return ResponseEntity.ok(page);
+    }
+
+    //TODO: listar Topicos por cursos
+
+    //TODO: listar topicos solucionados
+
+    //TODO: listar cursos no solucionados
+
+    @GetMapping("/{id}")
+    public ResponseEntity mostrarTopicoRespuestas(@PageableDefault(size = 10)Pageable paginacion,
+                                        @PathVariable Long id) {
+        var topico = service.mostrarTopico(id, paginacion);
+        return ResponseEntity.ok(topico);
     }
 }

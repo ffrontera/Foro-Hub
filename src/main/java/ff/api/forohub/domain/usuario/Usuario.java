@@ -5,12 +5,14 @@ import ff.api.forohub.domain.topico.Topico;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Table(name = "usuarios")
 @Entity(name = "Usuario")
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")

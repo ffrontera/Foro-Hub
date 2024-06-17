@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface TopicoRepository extends JpaRepository<Topico, Long> {
 
     Boolean existsByTituloAndMensaje(String tituloTopico, String mensajeTopico);
+
 }

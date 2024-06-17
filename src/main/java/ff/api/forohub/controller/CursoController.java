@@ -29,4 +29,20 @@ public class CursoController {
         var response = service.actualizarCurso(datos);
         return ResponseEntity.ok(response);
     }
+
+    //TODO: DELETE ( activar o desactivar curso)
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity cambiarEstado(@PathVariable Long id){
+
+        return ResponseEntity.ok().build();
+    }
+
+    //TODO: Listar cursos activos
+
+    //TODO: listar cursos inactivos
+
+    //TODO: listar todos los cursos
+
+    //TODO: get curso y listado de topicos
 }

@@ -6,6 +6,8 @@ import lombok.*;
 
 import java.util.List;
 
+//TODO: agregar booleano curso activo y crear set vacío del atributo para activar desactivar
+
 @Table(name = "cursos")
 @Entity(name = "Curso")
 @Getter

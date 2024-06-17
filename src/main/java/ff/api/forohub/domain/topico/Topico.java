@@ -52,4 +52,8 @@ public class Topico {
             this.titulo = datos.titulo();
         }
     }
+
+    public void setStatus() {
+        this.status = !status;
+    }
 }

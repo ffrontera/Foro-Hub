@@ -28,4 +28,24 @@ public class Respuesta {
     @ManyToOne
     private Usuario autorRespuesta;
     private Boolean solucion;
+
+    public Respuesta(String mensaje, Usuario autor, Topico topico) {
+        this.mensaje = mensaje;
+        this.topico = topico;
+        this.autorRespuesta = autor;
+        this.fechaCreacion = LocalDateTime.now();
+        this.solucion = false;
+    }
+
+    public Usuario getAutorRespuesta() {
+        return autorRespuesta;
+    }
+
+    public void setSolucion() {
+        this.solucion = !solucion;
+    }
+
+    public void actualizarMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
 }
