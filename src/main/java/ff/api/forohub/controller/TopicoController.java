@@ -33,7 +33,6 @@ public class TopicoController {
         return ResponseEntity.ok(response);
     }
 
-    //TODO: revisar el por que no esta eliminando.
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity eliminar(@PathVariable Long id) {
@@ -48,8 +47,6 @@ public class TopicoController {
         Page<DatosTopico> page = service.listarTopicos(paginacion);
         return ResponseEntity.ok(page);
     }
-
-    //TODO: listar Topicos por cursos
 
     //TODO: listar topicos solucionados
 

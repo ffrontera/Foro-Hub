@@ -51,13 +51,15 @@ public class TopicoService {
         return new DatosTopico(topico);
     }
 
-    //TODO: eliminacion topico y eliminar las respuestas al topico eliminado
     public String eliminarTopico(Long id) {
-        if (id == null || !topicoRepository.existsById(id)) {
-            new ValidationException("No existe topico con id = " + id);
+        var topico = topicoRepository.findById(id);
+        if (!topico.isPresent() || id == null) {
+            throw new ValidationException("No existe topico con id = " + id);
         }
         respuestaRepository.removeAllByTopico(topicoRepository.getReferenceById(id));
-        topicoRepository.deleteById(id);
+
+        topicoRepository.removeById(id);
+
         return "Topico y respuestas eliminados correctamente.";
     }
 

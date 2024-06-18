@@ -22,10 +22,12 @@ public class Respuesta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String mensaje;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name= "topico_id")
     private Topico topico;
     private LocalDateTime fechaCreacion;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name= "autor_respuesta_id")
     private Usuario autorRespuesta;
     private Boolean solucion;
 
@@ -48,4 +50,5 @@ public class Respuesta {
     public void actualizarMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
+
 }

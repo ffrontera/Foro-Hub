@@ -1,13 +1,11 @@
 package ff.api.forohub.domain.topico;
 
 import ff.api.forohub.domain.curso.Curso;
-import ff.api.forohub.domain.topico.respuesta.Respuesta;
 import ff.api.forohub.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Table(name = "topicos")
 @Entity(name = "Topico")
@@ -27,12 +25,12 @@ public class Topico {
     private String mensaje;
     private LocalDateTime fechaCreacion;
     private Boolean status;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name= "autor_topico_id")
     private Usuario autorTopico;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name= "curso_id")
     private Curso curso;
-    @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Respuesta> respuestas;
 
     public Topico(String titulo, String mensaje, Usuario autor, Curso curso) {
         this.titulo = titulo;
@@ -41,7 +39,6 @@ public class Topico {
         this.status = false;
         this.autorTopico = autor;
         this.curso = curso;
-        this.respuestas = null;
     }
 
     public void actualirTopico(DatosActualizarTopico datos) {
@@ -56,4 +53,5 @@ public class Topico {
     public void setStatus() {
         this.status = !status;
     }
+
 }
