@@ -44,18 +44,26 @@ public class TopicoController {
     //TODO: implementar PadeModel
     @GetMapping
     public ResponseEntity<Page<DatosTopico>> listar(@PageableDefault(size = 10)Pageable paginacion) {
-        Page<DatosTopico> page = service.listarTopicos(paginacion);
-        return ResponseEntity.ok(page);
+        var response = service.listarTopicos(paginacion);
+        return ResponseEntity.ok(response);
     }
 
-    //TODO: listar topicos solucionados
+    @GetMapping("/resueltos")
+    public ResponseEntity<Page<DatosTopico>> listarResueltos(@PageableDefault(size = 10) Pageable paginacion) {
+        var response = service.listarTopicosResueltos(paginacion);
+        return ResponseEntity.ok(response);
+    }
 
-    //TODO: listar cursos no solucionados
+    @GetMapping("/irresolutos")
+    public ResponseEntity<Page<DatosTopico>> listarSolucionados(@PageableDefault(size = 10) Pageable paginacion) {
+        var response = service.listarTopicosIrresolutos(paginacion);
+        return ResponseEntity.ok(response);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity mostrarTopicoRespuestas(@PageableDefault(size = 10)Pageable paginacion,
                                         @PathVariable Long id) {
-        var topico = service.mostrarTopico(id, paginacion);
-        return ResponseEntity.ok(topico);
+        var response = service.mostrarTopico(id, paginacion);
+        return ResponseEntity.ok(response);
     }
 }

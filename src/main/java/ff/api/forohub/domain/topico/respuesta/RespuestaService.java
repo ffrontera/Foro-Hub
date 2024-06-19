@@ -48,8 +48,9 @@ public class RespuestaService {
     }
 
     public EstadoTopicoRespuesta marcarDesmarcarComoSolucion(Long id) {
+        idValido(id);
         var respuesta = repository.getReferenceById(id);
-        var topico = topicoRepository.getReferenceById(respuesta.getAutorRespuesta().getId());
+        var topico = topicoRepository.getReferenceById(respuesta.getTopico().getId());
         respuesta.setSolucion();
         var solucionado = repository.existsByTopicoAndSolucion(topico, true);
         System.out.println(solucionado);
@@ -61,4 +62,27 @@ public class RespuestaService {
         return resultado;
     }
 
+    public void eliminarRespuesta(Long id) {
+        idValido(id);
+        var idTopicoRespuesta = repository.getReferenceById(id).getTopico().getId();
+        var topico = topicoRepository.getReferenceById(idTopicoRespuesta);
+
+        repository.deleteById(id);
+
+        var topicoSolucionado = repository.existsByTopicoAndSolucion(topico, true);
+        var estadoTopico = topico.getStatus();
+        if (estadoTopico && !topicoSolucionado) {
+            topico.setStatus();
+        }
+    }
+
+    private void idValido(Long id) {
+        if(id == null) {
+            throw new ValidationException("Debe proporcionar el id de la respuesta");
+        }
+
+        if(!repository.existsById(id)) {
+            throw new ValidacionDeIntegridad("No existe respuesta con id: " + id);
+        }
+    }
 }

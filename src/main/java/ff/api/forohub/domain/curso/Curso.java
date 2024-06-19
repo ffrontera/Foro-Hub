@@ -19,10 +19,12 @@ public class Curso {
     private String nombre;
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
+    private Boolean activo;
 
     public Curso(String nombre, Categoria categoria) {
         this.nombre = nombre;
         this.categoria = categoria;
+        this.activo = true;
     }
 
     public void setNombtre(String nombre) {
@@ -49,5 +51,9 @@ public class Curso {
         if (datos.categoria() != null) {
             this.categoria = datos.categoria();
         }
+    }
+
+    public void setActivo() {
+        this.activo = !activo;
     }
 }

@@ -41,12 +41,10 @@ public class RespuestaController {
         return ResponseEntity.ok(response);
     }
 
-    //TODO: hacer el delete respuesta, revisar si la respuesta si es satisfactoria, y si no hay otra igual
-    // marcar como false el status del topico
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity eliminar(@PathVariable Long id) {
-
+        service.eliminarRespuesta(id);
         return ResponseEntity.ok().build();
     }
 }

@@ -78,4 +78,14 @@ public class TopicoService {
 
         return new DatosTopicoRespuestas(new DatosTopico(topico), respuestas);
     }
+
+    public Page<DatosTopico> listarTopicosResueltos(Pageable paginacion) {
+        var topicosSolucionados = topicoRepository.findAllByStatusTrue(paginacion);
+        return topicosSolucionados.map(DatosTopico::new);
+    }
+
+    public Page<DatosTopico> listarTopicosIrresolutos(Pageable paginacion) {
+        var topicosSolucionados = topicoRepository.findAllByStatusFalse(paginacion);
+        return topicosSolucionados.map(DatosTopico::new);
+    }
 }
