@@ -1,8 +1,8 @@
 package ff.api.forohub.domain.curso;
 
-public record DatosCurso(String nombre, Categoria categoria) {
+public record DatosCurso(Long id, String nombre, Categoria categoria, Boolean activo) {
 
     public DatosCurso(Curso curso) {
-        this(curso.getNombre(), curso.getCategoria());
+        this(curso.getId(), curso.getNombre(), curso.getCategoria(), curso.getActivo());
     }
 }
