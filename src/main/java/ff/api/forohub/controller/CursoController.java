@@ -1,6 +1,7 @@
 package ff.api.forohub.controller;
 
 import ff.api.forohub.domain.curso.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @ResponseBody
 @RequestMapping("/cursos")
+@SecurityRequirement(name = "bearer-key")
 public class CursoController {
 
     @Autowired
@@ -21,21 +23,21 @@ public class CursoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity crear(@RequestBody @Valid DatosCrearCurso datos) {
+    public ResponseEntity crearCurso(@RequestBody @Valid DatosCrearCurso datos) {
         var response = service.crearCurso(datos);
         return ResponseEntity.ok(response);
     }
 
     @PutMapping
     @Transactional
-    public ResponseEntity actualizar(@RequestBody @Valid DatosActualizarCurso datos) {
+    public ResponseEntity actualizarCurso(@RequestBody @Valid DatosActualizarCurso datos) {
         var response = service.actualizarCurso(datos);
         return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity cambiarEstado(@PathVariable Long id){
+    public ResponseEntity cambiarEstadoCurso(@PathVariable Long id){
         service.cambiarEstado(id);
         return ResponseEntity.noContent().build();
     }
@@ -53,7 +55,7 @@ public class CursoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DatosCurso>> listar(@PageableDefault(size = 10) Pageable paginacion) {
+    public ResponseEntity<Page<DatosCurso>> listarCursos(@PageableDefault(size = 10) Pageable paginacion) {
         var response = service.listarCursos(paginacion);
         return ResponseEntity.ok(response);
     }

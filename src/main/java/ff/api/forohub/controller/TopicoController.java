@@ -1,6 +1,7 @@
 package ff.api.forohub.controller;
 
 import ff.api.forohub.domain.topico.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @ResponseBody
 @RequestMapping("/topicos")
+@SecurityRequirement(name = "bearer-key")
 public class TopicoController {
 
     @Autowired
@@ -21,21 +23,21 @@ public class TopicoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity crear(@RequestBody @Valid DatosCrearTopico datos) {
+    public ResponseEntity crearTopico(@RequestBody @Valid DatosCrearTopico datos) {
         var response = service.crearTopico(datos);
         return ResponseEntity.ok(response);
     }
 
     @PutMapping
     @Transactional
-    public ResponseEntity actualizar(@RequestBody @Valid DatosActualizarTopico datos) {
+    public ResponseEntity actualizarTopico(@RequestBody @Valid DatosActualizarTopico datos) {
         var response = service.actualizarTopico(datos);
         return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity eliminar(@PathVariable Long id) {
+    public ResponseEntity eliminarTopico(@PathVariable Long id) {
         var response = service.eliminarTopico(id);
         return ResponseEntity.ok(response);
     }
@@ -43,19 +45,19 @@ public class TopicoController {
 
     //TODO: implementar PadeModel
     @GetMapping
-    public ResponseEntity<Page<DatosTopico>> listar(@PageableDefault(size = 10)Pageable paginacion) {
+    public ResponseEntity<Page<DatosTopico>> listarTopicos(@PageableDefault(size = 10)Pageable paginacion) {
         var response = service.listarTopicos(paginacion);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/resueltos")
-    public ResponseEntity<Page<DatosTopico>> listarResueltos(@PageableDefault(size = 10) Pageable paginacion) {
+    public ResponseEntity<Page<DatosTopico>> listarTopicosResueltos(@PageableDefault(size = 10) Pageable paginacion) {
         var response = service.listarTopicosResueltos(paginacion);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/irresolutos")
-    public ResponseEntity<Page<DatosTopico>> listarSolucionados(@PageableDefault(size = 10) Pageable paginacion) {
+    public ResponseEntity<Page<DatosTopico>> listarTopicosIrresolutos(@PageableDefault(size = 10) Pageable paginacion) {
         var response = service.listarTopicosIrresolutos(paginacion);
         return ResponseEntity.ok(response);
     }
