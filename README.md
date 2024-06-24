@@ -1,5 +1,5 @@
 <h1>
-  <b>API Rest Froro</b>
+  <b>API Rest Foro</b>
 </h1>
 
 <h2>
