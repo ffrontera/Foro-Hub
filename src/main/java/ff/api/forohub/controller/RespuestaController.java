@@ -4,6 +4,7 @@ import ff.api.forohub.domain.topico.EstadoTopicoRespuesta;
 import ff.api.forohub.domain.topico.respuesta.DatosCrearRespuesta;
 import ff.api.forohub.domain.topico.respuesta.DatosEditarRespuesta;
 import ff.api.forohub.domain.topico.respuesta.RespuestaService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @ResponseBody
 @RequestMapping("/respuestas")
+@SecurityRequirement(name = "bearer-key")
 public class RespuestaController {
 
     @Autowired
@@ -21,14 +23,14 @@ public class RespuestaController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity crear(@RequestBody @Valid DatosCrearRespuesta datos) {
+    public ResponseEntity crearRespuesta(@RequestBody @Valid DatosCrearRespuesta datos) {
         var response = service.crearRespuesta(datos);
         return ResponseEntity.ok(response);
     }
 
     @PutMapping
     @Transactional
-    public ResponseEntity actualizar(@RequestBody @Valid DatosEditarRespuesta datos) {
+    public ResponseEntity actualizarRespuesta(@RequestBody @Valid DatosEditarRespuesta datos) {
         var response = service.editarRespuesta(datos);
 
         return ResponseEntity.ok(response);
@@ -36,14 +38,14 @@ public class RespuestaController {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity cambiarEstado(@PathVariable Long id) {
+    public ResponseEntity cambiarEstadoRespuesta(@PathVariable Long id) {
         EstadoTopicoRespuesta response = service.marcarDesmarcarComoSolucion(id);
         return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity eliminar(@PathVariable Long id) {
+    public ResponseEntity eliminarRespuesta(@PathVariable Long id) {
         service.eliminarRespuesta(id);
         return ResponseEntity.ok().build();
     }
