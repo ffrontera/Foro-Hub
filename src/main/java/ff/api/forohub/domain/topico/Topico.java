@@ -1,20 +1,16 @@
 package ff.api.forohub.domain.topico;
 
 import ff.api.forohub.domain.curso.Curso;
-import ff.api.forohub.domain.respuesta.Respuesta;
 import ff.api.forohub.domain.usuario.Usuario;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Table(name = "topicos")
 @Entity(name = "Topico")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -26,14 +22,36 @@ public class Topico {
     @Column(unique = true)
     private String titulo;
     @Column(unique = true)
-    private String Mensaje;
+    private String mensaje;
     private LocalDateTime fechaCreacion;
     private Boolean status;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name= "autor_topico_id")
     private Usuario autorTopico;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name= "curso_id")
     private Curso curso;
-    @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Respuesta> respuestas;
+
+    public Topico(String titulo, String mensaje, Usuario autor, Curso curso) {
+        this.titulo = titulo;
+        this.mensaje = mensaje;
+        this.fechaCreacion = LocalDateTime.now();
+        this.status = false;
+        this.autorTopico = autor;
+        this.curso = curso;
+    }
+
+    public void actualirTopico(DatosActualizarTopico datos) {
+        if (datos.mensaje() != null) {
+            this.mensaje = datos.mensaje();
+        }
+        if (datos.titulo() != null) {
+            this.titulo = datos.titulo();
+        }
+    }
+
+    public void setStatus() {
+        this.status = !status;
+    }
 
 }
