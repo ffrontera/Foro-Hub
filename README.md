@@ -6,6 +6,8 @@
     Desafio planteado por <a href="https://www.aluracursos.com/">Alura latam</a> y <a href="https://www.oracle.com/ar/">Oracle</a> para el progama ONE
 </h2>
 
+![fondo alura y oracle](img/img7.png)
+
 <h2>
   Informacion sobre el desafio planteado
 </h2>
