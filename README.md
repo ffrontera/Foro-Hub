@@ -85,7 +85,7 @@ agregando las operaciones de UPDATE y DELETE, y usando un framework que facilita
     Maven (versión 4)
   </li>
   <li>
-    <p>Spring Boot (versión 3.3.0)
+    Spring Boot (versión 3.3.0)
     Dependencias:
       <ul>
         <li>
@@ -113,7 +113,6 @@ agregando las operaciones de UPDATE y DELETE, y usando un framework que facilita
           Spring Security
         </li>
       </ul>
-    </p>  
   </li>
 </ul>
 
