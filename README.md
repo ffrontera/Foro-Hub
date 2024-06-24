@@ -73,6 +73,49 @@ agregando las operaciones de UPDATE y DELETE, y usando un framework que facilita
   </li>
 </ol>
 
+<h2>
+  Configuraciones del entorno
+</h2>
+
+<ul>
+  <li>
+    Java (versión 17) 
+  </li>
+  <li>
+    Maven (versión 4)
+  </li>
+  <li>
+    <p>Spring Boot (versión 3.3.0)
+    Dependencias:
+      <ul>
+        <li>
+          Lombok  
+        </li>
+        <li>
+          Spring Web
+        </li>
+        <li>
+          Spring Boot DevTools
+        </li>
+        <li>
+          Spring Data JPA
+        </li>
+        <li>
+          Flyway Migration
+        </li>
+        <li>
+          MySQL Driver
+        </li>
+        <li>
+          Validation
+        </li>
+        <li>
+          Spring Security
+        </li>
+      </ul>
+    </p>  
+  </li>
+</ul>
 
 
 
